@@ -1,402 +1,269 @@
-# 💎 Gabriela
+# 🖥️ Gabriela - Frontend (Painel Administrativo)
 
-> **Plataforma completa de gestão para profissionais de design de sobrancelhas**  
-> _A agenda que vende sozinha_
+## 📋 Sobre
 
-[![Website](https://img.shields.io/badge/website-gabriela.avila.inc-b76e79)](https://gabriela.avila.inc)
-[![Status](https://img.shields.io/badge/status-live-brightgreen)](https://gabriela.avila.inc)
-[![MongoDB](https://img.shields.io/badge/database-MongoDB%20Atlas-47A248?logo=mongodb)](https://www.mongodb.com/atlas)
-[![Node.js](https://img.shields.io/badge/backend-Node.js-339933?logo=node.js)](https://nodejs.org)
+Frontend do painel administrativo completo da plataforma Gabriela, desenvolvido com HTML5, CSS3 e JavaScript Vanilla para máxima performance.
 
----
+## ✨ Funcionalidades
 
-## 🎯 Sobre o Projeto
+### ✅ Sistema de Autenticação
+- Login seguro com JWT
+- Proteção de rotas
+- Logout com confirmação
 
-**Gabriela** é uma solução SaaS desenvolvida pela [Ávila.inc](https://avila.inc) que transforma a maneira como profissionais de design de sobrancelhas gerenciam seus negócios. Combinando uma landing page otimizada com um painel administrativo completo, a plataforma oferece tudo o que é necessário para profissionalizar o atendimento e aumentar o faturamento.
-
-### 🌐 Acesse Agora
-**Landing Page:** [gabriela.avila.inc](https://gabriela.avila.inc)
-
----
-
-## ✨ Diferenciais da Plataforma
-
-### 1️⃣ Agenda Inteligente
-- ✅ Sistema de agendamento online integrado
-- ✅ Confirmação automática via WhatsApp
-- ✅ Lembretes de consulta programados
-- ✅ Política de cancelamento clara
-- ✅ Redução de furos e remarcações
-
-**Resultado:** Mais horários preenchidos e menos tempo perdido.
-
-### 2️⃣ Aumento do Ticket Médio
-- 💰 Combos de serviços pré-configurados
-- 💰 Sugestões automáticas de upgrade
-- 💰 Pacotes promocionais personalizados
-- 💰 Cross-sell inteligente durante o agendamento
-
-**Resultado:** Maior faturamento por atendimento sem esforço adicional.
-
-### 3️⃣ Visibilidade no Google
-- 🔍 SEO otimizado para buscas locais
-- 🔍 Presença digital profissional
-- 🔍 Botão de contato direto via WhatsApp
-- 🔍 Captura de leads qualificados
-
-**Resultado:** Novos clientes encontram você organicamente.
-
-### 4️⃣ Receita Recorrente
-- 🎁 Sistema de vale-presente digital
-- 🎁 Pacotes pré-pagos com desconto
-- 🎁 Produtos digitais (e-books, guias)
-- 🎁 Receita antecipada e previsível
-
-**Resultado:** Fluxo de caixa mais saudável e previsível.
-
----
-
-## 🖥️ Painel Administrativo
-
-O sistema conta com um **painel de controle completo** desenvolvido com as melhores práticas de gestão:
+### 📊 Dashboard Principal
+- Estatísticas em tempo real
+- Agendamentos do dia
+- Clientes novos
+- Faturamento mensal
+- Taxa de faltas
 
 ### 📅 Módulo Agenda
-- Visualização mensal de todos os horários
-- Status de atendimentos (agendado/confirmado/compareceu/faltou)
-- Registro detalhado de cada serviço
-- Relatórios de taxa de faltas e horários mais produtivos
+- Calendário completo
+- Criação de agendamentos
+- Status dos atendimentos
+- Relatórios de faltas
 
 ### 👥 Módulo Clientes (CRM)
-- Ficha completa de cada cliente
-- Galeria de fotos antes/depois
-- Histórico de atendimentos e preferências
-- Registro de alergias e tipo de pele
-- Tags personalizadas (VIP, sensível, etc.)
-- Cálculo de ticket médio por cliente
+- Cadastro completo de clientes
+- Fotos antes/depois
+- Histórico de atendimentos
+- Tags personalizadas
+- Ticket médio
 
 ### 💵 Módulo Financeiro
-- Registro rápido de pagamentos
-- Relatórios diários, semanais e mensais
-- Análise por método de pagamento
-- Gráficos de serviços mais rentáveis
-- Dashboard financeiro em tempo real
+- Registro de pagamentos
+- Relatórios por período
+- Análise por serviço
+- Dashboard financeiro
 
 ### 📢 Módulo Marketing
-- Captura automática de contatos pelo site
-- Segmentação de clientes (orçamento, inativos, etc.)
-- Templates de mensagens automatizadas
-- Campanhas de reativação inteligentes
-- Comunicação direcionada e eficaz
+- Captura de leads
+- Segmentação de clientes
+- Mensagens automatizadas
+- Campanhas de reativação
 
 ### 📄 Módulo Documentos
-- Termos de consentimento digital
-- Ficha de anamnese online
-- Orientações pós-procedimento automáticas
-- Proteção jurídica e profissionalização
-- Histórico completo armazenado
+- Termos de consentimento
+- Ficha de anamnese
+- Orientações pós-procedimento
+- Histórico completo
 
----
+## 🚀 Como Usar
 
-## 🎨 Experiência Premium para Clientes
+### Desenvolvimento Local
 
-A plataforma não é apenas um sistema administrativo - é uma **ferramenta de branding**:
-
-- 🌟 Área exclusiva do cliente (portal personalizado)
-- 🌟 Acesso ao histórico de atendimentos
-- 🌟 Visualização de próximos agendamentos
-- 🌟 Galeria de transformações (antes/depois)
-- 🌟 Orientações de cuidados sempre disponíveis
-- 🌟 Comunicação profissional e organizada
-
-**Transformação:** De "moça da sobrancelha" para **especialista reconhecida** com clínica organizada e marca profissional.
-
----
-
-## 🛠️ Stack Tecnológica
-
-### Frontend (Landing Page)
-```
-HTML5 + CSS3 (Custom Design)
-JavaScript Vanilla (Performance otimizada)
-Responsive Design (Mobile-First)
-SEO Optimized
+1. **Clone o repositório**
+```bash
+git clone https://github.com/avilaops/gabriela.git
+cd gabriela/frontend
 ```
 
-### Backend (API REST)
+2. **Abra com um servidor HTTP**
+
+Opção 1 - Python:
+```bash
+python -m http.server 8000
+```
+
+Opção 2 - Node.js (http-server):
+```bash
+npx http-server -p 8000
+```
+
+Opção 3 - VS Code Live Server:
+- Instale a extensão "Live Server"
+- Clique com botão direito em `login.html`
+- Selecione "Open with Live Server"
+
+3. **Acesse no navegador**
+```
+http://localhost:8000/login.html
+```
+
+### Credenciais Padrão (Desenvolvimento)
+```
+Email: admin@gabriela.com
+Senha: admin123
+```
+
+## 📁 Estrutura
+
+```
+frontend/
+├── login.html              # Página de login
+├── dashboard.html          # Dashboard principal
+├── agenda.html             # Módulo de agenda (em desenvolvimento)
+├── clientes.html           # Módulo de clientes (em desenvolvimento)
+├── financeiro.html         # Módulo financeiro (em desenvolvimento)
+├── marketing.html          # Módulo de marketing (em desenvolvimento)
+├── documentos.html         # Módulo de documentos (em desenvolvimento)
+└── assets/
+    ├── css/
+    │   └── style.css       # Estilos principais
+    └── js/
+        ├── api.js          # Comunicação com backend
+        ├── auth.js         # Autenticação
+        └── dashboard.js    # Lógica do dashboard
+```
+
+## 🔧 Configuração
+
+### Backend API
+
+O frontend está configurado para se conectar automaticamente ao backend:
+
+- **Desenvolvimento local:** `http://localhost:3001/api`
+- **Produção:** `https://gabriela-api.azurecontainerapps.io/api`
+
+Para alterar, edite o arquivo `assets/js/api.js`:
+
 ```javascript
-Node.js v20+
-Express.js 4.x
-MongoDB Atlas (Database)
-Mongoose ODM 8.x
-JWT Authentication
-bcryptjs (Segurança)
+const API_BASE_URL = 'SEU_BACKEND_URL/api';
 ```
 
-### DevOps & Cloud
-```yaml
-Platform: Azure Container Apps
-Registry: Azure Container Registry
-CI/CD: GitHub Actions
-Monitoring: Azure Monitor
-Database: MongoDB Atlas (Serverless)
+## 🎨 Personalização
+
+### Cores
+
+Edite as variáveis CSS em `assets/css/style.css`:
+
+```css
+:root {
+    --primary-color: #8b6f47;
+    --secondary-color: #d4a574;
+    --accent-color: #b76e79;
+    /* ... */
+}
 ```
 
----
+### Logo
 
-## 📁 Estrutura do Projeto
+Substitua o emoji 💎 nas páginas HTML pela sua logo:
 
-```
-gabriela/
-├── 🌐 index.html              # Landing page otimizada
-├── 📄 CNAME                   # gabriela.avila.inc
-├── 📚 README.md               # Este arquivo
-├── 📖 SETUP_COMPLETO.md       # Guia de configuração
-├── .github/
-│   └── workflows/             # CI/CD automático
-│       ├── deploy-backend.yml # Deploy Azure
-│       ├── ci.yml             # Testes e lint
-│       └── mongodb-health.yml # Health checks
-├── backend/
-│   ├── 🐳 Dockerfile          # Container config
-│   ├── server.js              # Express app
-│   ├── database/
-│   │   ├── db.js              # MongoDB connection
-│   │   ├── init.js            # Inicialização
-│   │   └── seed.js            # Dados iniciais
-│   ├── models/                # 7 modelos Mongoose
-│   │   ├── User.js
-│   │   ├── Client.js
-│   │   ├── Service.js
-│   │   ├── Appointment.js
-│   │   ├── Product.js
-│   │   ├── ProductSale.js
-│   │   └── Anamnesis.js
-│   ├── routes/                # 7 APIs REST
-│   │   ├── auth.js
-│   │   ├── clients.js
-│   │   ├── services.js
-│   │   ├── appointments.js
-│   │   ├── products.js
-│   │   ├── dashboard.js
-│   │   └── sync.js
-│   └── services/
-│       ├── authService.js     # Autenticação
-│       ├── avilaAPI.js        # Integração Ávila
-│       └── syncService.js     # Sincronização
-└── docs/
-    ├── DEPLOY.md              # Guia de deploy
-    └── MONGODB_SETUP.md       # Configuração do banco
+```html
+<h1>💎 Gabriela</h1>
+<!-- Para -->
+<h1><img src="assets/img/logo.png" alt="Gabriela"></h1>
 ```
 
----
+## 🌐 Deploy
 
-## 🚀 Quick Start
+### GitHub Pages
 
-### Pré-requisitos
-- Node.js 20+ instalado
-- MongoDB Atlas account (gratuito)
-- Git configurado
+1. **Configure o repositório**
+```bash
+git add frontend/
+git commit -m "feat: adicionar painel administrativo"
+git push origin main
+```
 
-### Instalação Local
+2. **Ative o GitHub Pages**
+- Vá em Settings > Pages
+- Source: Deploy from a branch
+- Branch: main
+- Folder: /frontend
+- Save
+
+3. **Acesse**
+```
+https://avilaops.github.io/gabriela/login.html
+```
+
+### Netlify
+
+1. **Deploy direto pelo Git**
+```bash
+# Connect ao Netlify
+netlify init
+
+# Configure
+Build command: (deixe vazio)
+Publish directory: frontend
+```
+
+2. **Ou arraste a pasta**
+- Acesse [netlify.com](https://netlify.com)
+- Arraste a pasta `frontend/`
+- Pronto!
+
+### Vercel
 
 ```bash
-# Clone o repositório
-git clone https://github.com/avilaops/gabriela.git
-cd gabriela/backend
-
-# Instale as dependências
-npm install
-
-# Configure as variáveis de ambiente
-cp .env.example .env
-# Edite o arquivo .env com suas credenciais
-
-# Popule o banco de dados (primeira vez)
-npm run seed
-
-# Inicie o servidor
-npm run dev
+cd frontend
+vercel
 ```
 
-O servidor estará rodando em `http://localhost:3001`
+## 📱 Responsividade
 
-### Endpoints Principais
+O painel é **totalmente responsivo**:
 
-```
-GET  /health                    # Health check
-GET  /api/services              # Listar serviços
-GET  /api/clients               # Listar clientes
-GET  /api/appointments          # Listar agendamentos
-POST /api/auth/login            # Login
-GET  /api/dashboard/stats       # Estatísticas
-```
-
----
-
-## 📊 Modelos de Dados
-
-### Client (Cliente)
-```javascript
-{
-  name, email, phone, cpf, birthdate,
-  address, notes, tags,
-  totalSpent, visitCount, lastVisit,
-  avilaClientId, active, timestamps
-}
-```
-
-### Service (Serviço)
-```javascript
-{
-  name, description, duration, price,
-  category, active, timestamps
-}
-```
-
-### Appointment (Agendamento)
-```javascript
-{
-  clientId, serviceId, professionalId,
-  datetime, status, notes,
-  price, paymentStatus, paymentMethod,
-  timestamps
-}
-```
-
-### Product (Produto/Pacote)
-```javascript
-{
-  name, description, type, price,
-  validityDays, sessions, serviceIds,
-  stock, active, timestamps
-}
-```
-
----
+- ✅ Desktop (1920px+)
+- ✅ Laptop (1366px - 1920px)
+- ✅ Tablet (768px - 1366px)
+- ✅ Mobile (320px - 768px)
 
 ## 🔐 Segurança
 
-- ✅ Autenticação JWT (7 dias de validade)
-- ✅ Senhas criptografadas com bcrypt (10 rounds)
-- ✅ Variáveis de ambiente protegidas
-- ✅ MongoDB com TLS/SSL obrigatório
-- ✅ CORS configurado adequadamente
-- ✅ Container com usuário não-root
-- ✅ Audit de segurança automatizado (CI/CD)
+- ✅ Token JWT armazenado em localStorage
+- ✅ Proteção de rotas no client-side
+- ✅ Validação de formulários
+- ✅ Sanitização de inputs
+- ⚠️ **Importante:** Implementar HTTPS em produção
 
----
+## 🧪 Testes
 
-## 🔄 CI/CD & Deploy
+### Testar Localmente
 
-O projeto possui **deploy automatizado** via GitHub Actions:
+1. Inicie o backend:
+```bash
+cd backend
+npm run dev
+```
 
-### Workflow de Deploy
-1. Push para branch `main` com alterações em `backend/**`
-2. Build automático da imagem Docker
-3. Push para Azure Container Registry
-4. Deploy no Azure Container Apps
-5. Health check pós-deploy
+2. Inicie o frontend:
+```bash
+cd frontend
+python -m http.server 8000
+```
 
-### Workflow de Testes
-- Testes em Node.js 18.x e 20.x
-- Lint automático do código
-- Security audit com `npm audit`
-- Validação de builds
+3. Acesse: `http://localhost:8000/login.html`
 
-### Monitoramento
-- Health check diário do MongoDB
-- Notificações via Pulse (webhook)
-- Logs estruturados no Azure Monitor
+## 📚 Dependências
 
-📖 **Guia completo:** Ver `docs/DEPLOY.md`
+### CDNs Utilizadas
 
----
+- **Google Fonts:** Inter
+- **Iconoir:** Ícones SVG
+- **Chart.js:** Gráficos (futuro)
 
-## 🌟 Diferenciais Técnicos
+Todas as dependências são carregadas via CDN para facilitar o deploy.
 
-### Performance
-- ⚡ MongoDB Atlas com indexes otimizados
-- ⚡ Connection pooling configurado
-- ⚡ Queries otimizadas com aggregation pipeline
-- ⚡ Response time < 200ms (p95)
+## 🎯 Próximos Passos
 
-### Escalabilidade
-- 📈 Arquitetura stateless
-- 📈 Horizontal scaling ready
-- 📈 Database serverless (auto-scaling)
-- 📈 Container orchestration (Azure)
-
-### Confiabilidade
-- 🛡️ Retry logic em conexões
-- 🛡️ Graceful shutdown
-- 🛡️ Health checks integrados
-- 🛡️ Error handling robusto
-
----
-
-## 📈 Roadmap
-
-### Em Desenvolvimento
-- [ ] Painel web frontend (React/Next.js)
-- [ ] Aplicativo móvel (React Native)
-- [ ] Integração com pagamentos (Stripe/Mercado Pago)
-- [ ] Sistema de notificações push
-- [ ] Relatórios avançados com gráficos
-
-### Futuro
-- [ ] Multi-tenant (vários profissionais)
-- [ ] Marketplace de serviços
-- [ ] Programa de indicação
-- [ ] Integração com redes sociais
-- [ ] Sistema de avaliações
-
----
+- [ ] Completar módulos restantes (Agenda, Clientes, etc.)
+- [ ] Adicionar upload de fotos
+- [ ] Implementar calendário interativo
+- [ ] Adicionar gráficos com Chart.js
+- [ ] Sistema de notificações
+- [ ] Modo escuro
+- [ ] PWA (Progressive Web App)
+- [ ] Integração WhatsApp
 
 ## 🤝 Contribuindo
 
-Este é um projeto proprietário da **Ávila.inc**, mas aceitamos sugestões:
+Frontend desenvolvido seguindo os padrões:
 
-1. Abra uma issue descrevendo sua sugestão
-2. Aguarde aprovação do time
-3. Crie um fork e desenvolva
-4. Submeta um pull request
-
----
-
-## 📞 Suporte & Contato
-
-### Time Ávila.inc
-- 🌐 Website: [avila.inc](https://avila.inc)
-- 📧 Email: contato@avila.inc
-- 💬 WhatsApp: Em breve
-
-### Documentação Adicional
-- 📘 [Guia de Deploy](docs/DEPLOY.md)
-- 📘 [Configuração MongoDB](docs/MONGODB_SETUP.md)
-- 📘 [Setup Completo](SETUP_COMPLETO.md)
-
----
+- HTML5 semântico
+- CSS3 com variáveis e flexbox/grid
+- JavaScript Vanilla (ES6+)
+- Mobile-First approach
+- Performance otimizada
 
 ## 📄 Licença
 
-© 2025 **Ávila.inc** - Todos os direitos reservados.
-
-Este projeto é **proprietário** e seu uso, distribuição ou modificação requer autorização expressa da Ávila.inc.
+© 2025 Ávila.inc - Todos os direitos reservados.
 
 ---
-
-## 🏆 Créditos
 
 **Desenvolvido com 💜 por Ávila.inc**
-
-_Transformando profissionais em marcas, sistemas em experiências._
-
----
-
-<div align="center">
-
-### ⭐ Se este projeto te inspirou, deixe uma estrela no GitHub!
-
-**[gabriela.avila.inc](https://gabriela.avila.inc)** | **[Ávila.inc](https://avila.inc)**
-
-</div>
