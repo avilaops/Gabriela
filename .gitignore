@@ -1,0 +1,42 @@
+# Environment
+.env
+.env.local
+.env.*.local
+backend/.env
+
+# API Keys
+API_KEY.MD
+
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Database
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Testing
+coverage/
+.nyc_output/
+
+# Build
+dist/
+build/

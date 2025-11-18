@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriela - A Agenda que Vende Sozinha</title>
+    <meta name="description"
+        content="Designer de sobrancelhas em Auriflama. Brow Lamination, Nanofios, Linha Egípcia. Agende agora!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8b6f47;
+            --secondary-color: #d4a574;
+            --accent-color: #f9f5f0;
+            --rose-gold: #b76e79;
+            --soft-pink: #f5e6e8;
+            --text-dark: #2c2c2c;
+            --text-light: #ffffff;
+            --gradient: linear-gradient(135deg, #b76e79 0%, #d4a574 100%);
+            --gradient-alt: linear-gradient(135deg, #8b6f47 0%, #b76e79 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            background: #ffffff;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-50px, 50px) rotate(180deg);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 7rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2.5rem);
+            font-weight: 300;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-light);
+            background: var(--gradient);
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(212, 165, 116, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(212, 165, 116, 0.4);
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .section:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.8rem);
+            font-weight: 300;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 800px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon i {
+            color: var(--rose-gold);
+            font-size: 3.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .benefits-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .benefits-list li {
+            font-size: 1.3rem;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .benefits-list li:before {
+            content: '✓';
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            color: var(--text-light);
+        }
+
+        .pricing-section .section-title,
+        .pricing-section .section-subtitle {
+            color: var(--text-light);
+        }
+
+        .pricing-section .section-subtitle {
+            color: var(--accent-color);
+        }
+
+        .final-cta {
+            background: var(--gradient);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .final-cta .cta-button {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-list li {
+                font-size: 1.1rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>Gabriela</h1>
+        <p class="subtitle">A agenda que vende sozinha</p>
+        <a href="https://wa.me/5518999999999" class="cta-button">Agendar Agora</a>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section">
+        <h2 class="section-title fade-in">Menos Furo.<br>Mais Faturamento.</h2>
+        <p class="section-subtitle fade-in">Chega de remarcações bagunçadas e horários vazios</p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <h2 class="section-title fade-in">Quatro Maneiras de<br>Transformar Seu Negócio</h2>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="iconoir-calendar"></i></div>
+                <h3 class="feature-title">Agenda Inteligente</h3>
+                <p class="feature-description">Confirmação automática, lembretes no WhatsApp e política de cancelamento
+                    clara. Seus horários sempre preenchidos.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="iconoir-dollar"></i></div>
+                <h3 class="feature-title">Ticket Médio Maior</h3>
+                <p class="feature-description">Combos prontos e sugestões de upgrade automáticas. Brow Lamination +
+                    Design. Manutenção + Nutrição.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="iconoir-google"></i></div>
+                <h3 class="feature-title">Visibilidade no Google</h3>
+                <p class="feature-description">Quando alguém buscar "designer de sobrancelhas em Auriflama", encontra
+                    você primeiro.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="iconoir-gift"></i></div>
+                <h3 class="feature-title">Receita Recorrente</h3>
+                <p class="feature-description">Vale-presente digital, pacotes pré-pagos e produtos que vendem sem
+                    depender da sua mão.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="section">
+        <h2 class="section-title fade-in">Seu Painel de Controle</h2>
+        <p class="section-subtitle fade-in">Tudo o que você precisa em um só lugar</p>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="iconoir-calendar-plus"></i></div>
+                <h3 class="feature-title">Módulo Agenda</h3>
+                <p class="feature-description">Todos os horários do mês, status de cada atendimento e relatórios de taxa
+                    de faltas.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="iconoir-community"></i></div>
+                <h3 class="feature-title">Módulo Clientes</h3>
+                <p class="feature-description">Ficha completa com fotos antes/depois, preferências, histórico e
+                    identificação de clientes VIP.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="iconoir-credit-card"></i></div>
+                <h3 class="feature-title">Módulo Financeiro</h3>
+                <p class="feature-description">Faturamento diário, semanal e mensal. Descubra qual serviço realmente
+                    paga suas contas.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="iconoir-send-diagonal"></i></div>
+                <h3 class="feature-title">Módulo Marketing</h3>
+                <p class="feature-description">Mensagens automáticas de manutenção, promoções e recuperação de clientes
+                    inativos.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="iconoir-page"></i></div>
+                <h3 class="feature-title">Módulo Documentos</h3>
+                <p class="feature-description">Termos de consentimento digital, anamnese e orientações pós-procedimento
+                    automáticas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+        <h2 class="section-title fade-in">Experiência Premium<br>Para Suas Clientes</h2>
+        <ul class="benefits-list">
+            <li class="fade-in">Área exclusiva para acompanhar próximos horários</li>
+            <li class="fade-in">Histórico completo de atendimentos</li>
+            <li class="fade-in">Galeria de fotos antes/depois</li>
+            <li class="fade-in">Orientações de cuidados sempre à mão</li>
+            <li class="fade-in">Comunicação organizada e profissional</li>
+        </ul>
+    </section>
+
+    <!-- Transformation Section -->
+    <section class="section pricing-section">
+        <h2 class="section-title fade-in">De "Moça da Sobrancelha"<br>Para Especialista Reconhecida</h2>
+        <p class="section-subtitle fade-in">Site clean com suas fotos profissionais, sua história bem contada<br>e uma
+            clínica organizada, mesmo que seja um estúdio pequeno.</p>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Pronta Para Transformar<br>Seu Negócio?</h2>
+        <a href="https://wa.me/5518999999999" class="cta-button">Agendar Agora</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Gabriela - Designer de Sobrancelhas em Auriflama</p>
+        <p>Brow Lamination | Nanofios | Linha Egípcia</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

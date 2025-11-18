@@ -1,0 +1,90 @@
+name: Deploy Full Stack
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy-backend:
+    name: 🔧 Backend (GitHub Container)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: 📦 Checkout código
+        uses: actions/checkout@v4
+
+      - name: 🐳 Login no GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏗️ Build e Push da imagem Docker
+        working-directory: ./backend
+        run: |
+          IMAGE_TAG=ghcr.io/${{ github.repository }}/backend
+          docker build -t ${IMAGE_TAG}:${{ github.sha }} \
+                       -t ${IMAGE_TAG}:latest .
+          docker push ${IMAGE_TAG}:${{ github.sha }}
+          docker push ${IMAGE_TAG}:latest
+
+      - name: ✅ Backend Deploy
+        run: echo "✅ Backend image published to ghcr.io"
+
+  deploy-frontend:
+    name: 🎨 Frontend (GitHub Pages)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 📦 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: 📤 Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: ✅ Frontend Deploy
+        run: echo "✅ Frontend deployed to https://gabriela.avila.inc"
+
+  summary:
+    name: 📋 Deploy Summary
+    needs: [deploy-backend, deploy-frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🎉 Success
+        run: |
+          echo "════════════════════════════════════════════"
+          echo "🎉 GABRIELA - DEPLOY COMPLETO"
+          echo "════════════════════════════════════════════"
+          echo ""
+          echo "🐳 Backend:  ghcr.io/${{ github.repository }}/backend:${{ github.sha }}"
+          echo "✅ Frontend: https://gabriela.avila.inc"
+          echo ""
+          echo "════════════════════════════════════════════"

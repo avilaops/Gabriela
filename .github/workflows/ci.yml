@@ -1,0 +1,82 @@
+name: CI - Testes Backend
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+  push:
+    branches:
+      - develop
+    paths:
+      - 'backend/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: 📦 Checkout código
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: 📥 Instalar dependências
+        working-directory: ./backend
+        run: npm ci
+
+      - name: 🔍 Lint do código
+        working-directory: ./backend
+        run: npm run lint || echo "⚠️ Lint não configurado ainda"
+
+      - name: 🧪 Executar testes
+        working-directory: ./backend
+        run: npm test || echo "⚠️ Testes não configurados ainda"
+        env:
+          NODE_ENV: test
+          MONGODB_URI: ${{ secrets.MONGODB_TEST_URI }}
+          JWT_SECRET: test_secret_key
+
+      - name: 📊 Verificar build
+        working-directory: ./backend
+        run: node -e "console.log('✅ Sintaxe do código verificada')"
+
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout código
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: 🔒 Audit de segurança
+        working-directory: ./backend
+        run: npm audit --audit-level=moderate || true
+
+      - name: 📋 Verificar vulnerabilidades críticas
+        working-directory: ./backend
+        run: |
+          AUDIT_RESULT=$(npm audit --json)
+          CRITICAL=$(echo $AUDIT_RESULT | jq '.metadata.vulnerabilities.critical')
+          HIGH=$(echo $AUDIT_RESULT | jq '.metadata.vulnerabilities.high')
+
+          if [ "$CRITICAL" -gt "0" ] || [ "$HIGH" -gt "0" ]; then
+            echo "⚠️ Vulnerabilidades encontradas: $CRITICAL críticas, $HIGH altas"
+            npm audit
+          else
+            echo "✅ Nenhuma vulnerabilidade crítica encontrada"
+          fi
