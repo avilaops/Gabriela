@@ -2,24 +2,24 @@
 async function loadDashboardData() {
     try {
         const stats = await api.getDashboardStats();
-        
+
         // Update stats cards
         document.getElementById('todayAppointments').textContent = stats.todayAppointments || 0;
         document.getElementById('totalClients').textContent = stats.totalClients || 0;
         document.getElementById('monthRevenue').textContent = formatCurrency(stats.monthRevenue || 0);
         document.getElementById('noShowRate').textContent = `${stats.noShowRate || 0}%`;
-        
+
         // Load upcoming appointments
         await loadUpcomingAppointments();
-        
+
         // Load top services
         if (stats.topServices && stats.topServices.length > 0) {
             renderTopServices(stats.topServices);
         }
-        
+
         // Load new clients
         await loadNewClients();
-        
+
     } catch (error) {
         console.error('Error loading dashboard:', error);
         showError('Erro ao carregar dados do dashboard');
@@ -29,13 +29,13 @@ async function loadDashboardData() {
 async function loadUpcomingAppointments() {
     try {
         const today = new Date().toISOString().split('T')[0];
-        const appointments = await api.getAppointments({ 
+        const appointments = await api.getAppointments({
             start: today,
             status: 'agendado,confirmado'
         });
-        
+
         const container = document.getElementById('upcomingAppointments');
-        
+
         if (!appointments || appointments.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
@@ -45,7 +45,7 @@ async function loadUpcomingAppointments() {
             `;
             return;
         }
-        
+
         const appointmentsList = appointments.slice(0, 5).map(apt => `
             <div class="appointment-item">
                 <div class="appointment-time">
@@ -61,9 +61,9 @@ async function loadUpcomingAppointments() {
                 </div>
             </div>
         `).join('');
-        
+
         container.innerHTML = appointmentsList;
-        
+
     } catch (error) {
         console.error('Error loading appointments:', error);
     }
@@ -72,9 +72,9 @@ async function loadUpcomingAppointments() {
 async function loadNewClients() {
     try {
         const clients = await api.getClients();
-        
+
         const container = document.getElementById('newClients');
-        
+
         if (!clients || clients.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
@@ -84,15 +84,15 @@ async function loadNewClients() {
             `;
             return;
         }
-        
+
         // Filter clients from last 7 days
         const sevenDaysAgo = new Date();
         sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-        
-        const newClients = clients.filter(client => 
+
+        const newClients = clients.filter(client =>
             new Date(client.createdAt) >= sevenDaysAgo
         );
-        
+
         if (newClients.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
@@ -102,7 +102,7 @@ async function loadNewClients() {
             `;
             return;
         }
-        
+
         const clientsList = newClients.slice(0, 5).map(client => `
             <div class="client-item">
                 <div class="client-avatar">${client.name.charAt(0).toUpperCase()}</div>
@@ -115,9 +115,9 @@ async function loadNewClients() {
                 </div>
             </div>
         `).join('');
-        
+
         container.innerHTML = clientsList;
-        
+
     } catch (error) {
         console.error('Error loading new clients:', error);
     }
@@ -125,7 +125,7 @@ async function loadNewClients() {
 
 function renderTopServices(services) {
     const container = document.getElementById('topServices');
-    
+
     const servicesList = services.map((service, index) => `
         <div class="service-rank">
             <span class="rank-number">${index + 1}</span>
@@ -138,7 +138,7 @@ function renderTopServices(services) {
             <span class="service-count">${service.count} vendas</span>
         </div>
     `).join('');
-    
+
     container.innerHTML = servicesList;
 }
 

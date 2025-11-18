@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = window.location.hostname === 'localhost' 
+const API_BASE_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:3001/api'
     : 'https://gabriela-api.azurecontainerapps.io/api';
 
