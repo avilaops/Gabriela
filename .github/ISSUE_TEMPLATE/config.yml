@@ -9,9 +9,9 @@ contact_links:
     about: Consulte a documentação oficial
 
   - name: 🔒 Vulnerabilidade de Segurança
-    url: mailto:security@avila.inc
+    url: https://github.com/avilaops/gabriela/security/advisories/new
     about: Reporte vulnerabilidades de segurança de forma privada
 
   - name: 🆘 Suporte
-    url: mailto:support@avila.inc
+    url: https://avila.inc/support
     about: Suporte técnico e dúvidas sobre uso
