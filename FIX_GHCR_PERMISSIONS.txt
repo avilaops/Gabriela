@@ -15,7 +15,7 @@ https://github.com/organizations/avilaops/settings/actions
 ### 2. Na seção "Workflow permissions"
 
 Marque:
-- ✅ **Read and write permissions**  
+- ✅ **Read and write permissions**
   (Permite que GITHUB_TOKEN tenha `packages: write`)
 
 ### 3. Na seção "Fork pull request workflows"
