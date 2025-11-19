@@ -214,7 +214,7 @@ describe('User Service', () => {
       name: 'Test User',
       email: 'test@example.com'
     });
-    
+
     expect(user).toHaveProperty('id');
     expect(user.name).toBe('Test User');
   });
