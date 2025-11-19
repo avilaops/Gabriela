@@ -1,0 +1,34 @@
+{
+    "mcpServers": {
+        "gabriela-api": {
+            "command": "node",
+            "args": [
+                "backend/server.js"
+            ],
+            "env": {
+                "PORT": "3001",
+                "NODE_ENV": "development"
+            }
+        },
+        "github": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-github"
+            ],
+            "env": {
+                "GITHUB_PERSONAL_ACCESS_TOKEN": "${GH_TOKEN}"
+            }
+        },
+        "mongodb": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-mongodb"
+            ],
+            "env": {
+                "MONGODB_URI": "${MONGODB_URI}"
+            }
+        }
+    }
+}

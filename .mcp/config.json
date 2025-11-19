@@ -1,0 +1,46 @@
+{
+    "version": "1.0.0",
+    "name": "gabriela-mcp-server",
+    "description": "MCP Server para o sistema Gabriela - Gestão de sobrancelhas",
+    "servers": {
+        "gabriela": {
+            "type": "local",
+            "command": "node",
+            "args": [
+                "backend/server.js"
+            ],
+            "capabilities": [
+                "read",
+                "write",
+                "execute"
+            ],
+            "resources": [
+                "clients",
+                "appointments",
+                "services",
+                "products",
+                "users"
+            ]
+        }
+    },
+    "integrations": {
+        "github": {
+            "enabled": true,
+            "owner": "avilaops",
+            "repo": "gabriela"
+        },
+        "mongodb": {
+            "enabled": true,
+            "database": "gabriela"
+        },
+        "avila": {
+            "enabled": true,
+            "ecosystem": {
+                "api": "https://api.avila.inc",
+                "portal": "https://portal.avila.inc",
+                "vault": "https://vault.avila.inc",
+                "pulse": "https://api.avila.inc/pulse"
+            }
+        }
+    }
+}

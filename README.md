@@ -1,269 +1,311 @@
-# 🖥️ Gabriela - Frontend (Painel Administrativo)
+# 💜 Gabriela - Sistema de Gestão para Design de Sobrancelhas
 
-## 📋 Sobre
+[![Deploy Backend](https://github.com/avilaops/gabriela/actions/workflows/deploy-backend.yml/badge.svg)](https://github.com/avilaops/gabriela/actions/workflows/deploy-backend.yml)
+[![Deploy Pages](https://github.com/avilaops/gabriela/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/avilaops/gabriela/actions/workflows/deploy-pages.yml)
+[![CI](https://github.com/avilaops/gabriela/actions/workflows/ci.yml/badge.svg)](https://github.com/avilaops/gabriela/actions/workflows/ci.yml)
+[![MongoDB Health](https://github.com/avilaops/gabriela/actions/workflows/mongodb-health.yml/badge.svg)](https://github.com/avilaops/gabriela/actions/workflows/mongodb-health.yml)
 
-Frontend do painel administrativo completo da plataforma Gabriela, desenvolvido com HTML5, CSS3 e JavaScript Vanilla para máxima performance.
+> Plataforma SaaS completa para gestão de estúdios de design de sobrancelhas - agendamento inteligente, controle financeiro e automação de marketing.
 
-## ✨ Funcionalidades
-
-### ✅ Sistema de Autenticação
-- Login seguro com JWT
-- Proteção de rotas
-- Logout com confirmação
-
-### 📊 Dashboard Principal
-- Estatísticas em tempo real
-- Agendamentos do dia
-- Clientes novos
-- Faturamento mensal
-- Taxa de faltas
-
-### 📅 Módulo Agenda
-- Calendário completo
-- Criação de agendamentos
-- Status dos atendimentos
-- Relatórios de faltas
-
-### 👥 Módulo Clientes (CRM)
-- Cadastro completo de clientes
-- Fotos antes/depois
-- Histórico de atendimentos
-- Tags personalizadas
-- Ticket médio
-
-### 💵 Módulo Financeiro
-- Registro de pagamentos
-- Relatórios por período
-- Análise por serviço
-- Dashboard financeiro
-
-### 📢 Módulo Marketing
-- Captura de leads
-- Segmentação de clientes
-- Mensagens automatizadas
-- Campanhas de reativação
-
-### 📄 Módulo Documentos
-- Termos de consentimento
-- Ficha de anamnese
-- Orientações pós-procedimento
-- Histórico completo
-
-## 🚀 Como Usar
-
-### Desenvolvimento Local
-
-1. **Clone o repositório**
-```bash
-git clone https://github.com/avilaops/gabriela.git
-cd gabriela/frontend
-```
-
-2. **Abra com um servidor HTTP**
-
-Opção 1 - Python:
-```bash
-python -m http.server 8000
-```
-
-Opção 2 - Node.js (http-server):
-```bash
-npx http-server -p 8000
-```
-
-Opção 3 - VS Code Live Server:
-- Instale a extensão "Live Server"
-- Clique com botão direito em `login.html`
-- Selecione "Open with Live Server"
-
-3. **Acesse no navegador**
-```
-http://localhost:8000/login.html
-```
-
-### Credenciais Padrão (Desenvolvimento)
-```
-Email: admin@gabriela.com
-Senha: admin123
-```
-
-## 📁 Estrutura
-
-```
-frontend/
-├── login.html              # Página de login
-├── dashboard.html          # Dashboard principal
-├── agenda.html             # Módulo de agenda (em desenvolvimento)
-├── clientes.html           # Módulo de clientes (em desenvolvimento)
-├── financeiro.html         # Módulo financeiro (em desenvolvimento)
-├── marketing.html          # Módulo de marketing (em desenvolvimento)
-├── documentos.html         # Módulo de documentos (em desenvolvimento)
-└── assets/
-    ├── css/
-    │   └── style.css       # Estilos principais
-    └── js/
-        ├── api.js          # Comunicação com backend
-        ├── auth.js         # Autenticação
-        └── dashboard.js    # Lógica do dashboard
-```
-
-## 🔧 Configuração
-
-### Backend API
-
-O frontend está configurado para se conectar automaticamente ao backend:
-
-- **Desenvolvimento local:** `http://localhost:3001/api`
-- **Produção:** `https://gabriela-api.azurecontainerapps.io/api`
-
-Para alterar, edite o arquivo `assets/js/api.js`:
-
-```javascript
-const API_BASE_URL = 'SEU_BACKEND_URL/api';
-```
-
-## 🎨 Personalização
-
-### Cores
-
-Edite as variáveis CSS em `assets/css/style.css`:
-
-```css
-:root {
-    --primary-color: #8b6f47;
-    --secondary-color: #d4a574;
-    --accent-color: #b76e79;
-    /* ... */
-}
-```
-
-### Logo
-
-Substitua o emoji 💎 nas páginas HTML pela sua logo:
-
-```html
-<h1>💎 Gabriela</h1>
-<!-- Para -->
-<h1><img src="assets/img/logo.png" alt="Gabriela"></h1>
-```
-
-## 🌐 Deploy
-
-### GitHub Pages
-
-1. **Configure o repositório**
-```bash
-git add frontend/
-git commit -m "feat: adicionar painel administrativo"
-git push origin main
-```
-
-2. **Ative o GitHub Pages**
-- Vá em Settings > Pages
-- Source: Deploy from a branch
-- Branch: main
-- Folder: /frontend
-- Save
-
-3. **Acesse**
-```
-https://avilaops.github.io/gabriela/login.html
-```
-
-### Netlify
-
-1. **Deploy direto pelo Git**
-```bash
-# Connect ao Netlify
-netlify init
-
-# Configure
-Build command: (deixe vazio)
-Publish directory: frontend
-```
-
-2. **Ou arraste a pasta**
-- Acesse [netlify.com](https://netlify.com)
-- Arraste a pasta `frontend/`
-- Pronto!
-
-### Vercel
-
-```bash
-cd frontend
-vercel
-```
-
-## 📱 Responsividade
-
-O painel é **totalmente responsivo**:
-
-- ✅ Desktop (1920px+)
-- ✅ Laptop (1366px - 1920px)
-- ✅ Tablet (768px - 1366px)
-- ✅ Mobile (320px - 768px)
-
-## 🔐 Segurança
-
-- ✅ Token JWT armazenado em localStorage
-- ✅ Proteção de rotas no client-side
-- ✅ Validação de formulários
-- ✅ Sanitização de inputs
-- ⚠️ **Importante:** Implementar HTTPS em produção
-
-## 🧪 Testes
-
-### Testar Localmente
-
-1. Inicie o backend:
-```bash
-cd backend
-npm run dev
-```
-
-2. Inicie o frontend:
-```bash
-cd frontend
-python -m http.server 8000
-```
-
-3. Acesse: `http://localhost:8000/login.html`
-
-## 📚 Dependências
-
-### CDNs Utilizadas
-
-- **Google Fonts:** Inter
-- **Iconoir:** Ícones SVG
-- **Chart.js:** Gráficos (futuro)
-
-Todas as dependências são carregadas via CDN para facilitar o deploy.
-
-## 🎯 Próximos Passos
-
-- [ ] Completar módulos restantes (Agenda, Clientes, etc.)
-- [ ] Adicionar upload de fotos
-- [ ] Implementar calendário interativo
-- [ ] Adicionar gráficos com Chart.js
-- [ ] Sistema de notificações
-- [ ] Modo escuro
-- [ ] PWA (Progressive Web App)
-- [ ] Integração WhatsApp
-
-## 🤝 Contribuindo
-
-Frontend desenvolvido seguindo os padrões:
-
-- HTML5 semântico
-- CSS3 com variáveis e flexbox/grid
-- JavaScript Vanilla (ES6+)
-- Mobile-First approach
-- Performance otimizada
-
-## 📄 Licença
-
-© 2025 Ávila.inc - Todos os direitos reservados.
+🌐 **Live:** [gabriela.avila.inc](https://gabriela.avila.inc)
 
 ---
 
-**Desenvolvido com 💜 por Ávila.inc**
+## 🎯 Visão Geral
+
+**Gabriela** é uma solução moderna desenvolvida para profissionais de design de sobrancelhas que buscam digitalizar e otimizar a gestão do seu negócio.
+
+### 🌟 Diferenciais
+
+- ✨ Interface moderna e intuitiva
+- 📱 100% responsivo (mobile-first)
+- 🔒 Segurança JWT + bcrypt
+- ⚡ Alta performance (MongoDB Atlas)
+- 🤖 Recomendações inteligentes
+- 🔌 Integração via MCP (Model Context Protocol)
+
+---
+
+## 🛠️ Stack Tecnológica
+
+**Frontend:**
+- HTML5, CSS3, JavaScript Vanilla
+- PWA Ready | Google Fonts (Inter) | Iconoir Icons
+
+**Backend:**
+- Node.js 20+ | Express.js 4.x
+- MongoDB Atlas | Mongoose 8.x
+- JWT + bcryptjs
+
+**Cloud & DevOps:**
+- GitHub Pages (frontend)
+- Azure Container Apps (backend)
+- GitHub Actions CI/CD
+- Docker | GitHub Container Registry
+
+**Integração:**
+- MCP (Model Context Protocol)
+- Avila Ecosystem (API Gateway, Portal, Vault)
+
+---
+
+## 📦 Estrutura
+
+```
+gabriela/
+├── frontend/           # Interface web
+│   ├── assets/
+│   │   ├── css/       # Estilos
+│   │   └── js/        # JavaScript (api.js, auth.js, etc)
+│   ├── dashboard.html
+│   ├── login.html
+│   └── usuarios.html
+├── backend/           # REST API
+│   ├── database/      # MongoDB config + seed
+│   ├── models/        # Mongoose models (7 entidades)
+│   ├── routes/        # Endpoints REST
+│   ├── services/      # Business logic
+│   └── server.js
+├── .github/workflows/ # CI/CD (5 pipelines)
+├── .mcp/              # Configuração MCP
+└── mcp.json
+```
+
+---
+
+## ⚡ Início Rápido
+
+### Pré-requisitos
+
+- Node.js 20+ | MongoDB Atlas | Git
+
+### Instalação
+
+```bash
+# Clone e configure
+git clone https://github.com/avilaops/gabriela.git
+cd gabriela/backend
+
+# Configure variáveis (veja seção abaixo)
+cp .env.example .env
+nano .env
+
+# Instale e inicialize
+npm install
+npm run seed     # Cria usuário padrão: gabi / gabi@123
+npm run dev      # http://localhost:3001
+```
+
+### Acesso
+
+```
+Login:  gabi
+Senha:  gabi@123
+```
+
+---
+
+## 🔧 Configuração
+
+### Variáveis de Ambiente (.env)
+
+```env
+# Server
+PORT=3001
+NODE_ENV=development
+
+# Database
+MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/gabriela
+
+# Security
+JWT_SECRET=nsPY6F4IAvxw1epkfHUjTZhdr2SO0Wcu_gabriela_2025_secure
+
+# Avila Ecosystem
+AVILA_API_KEY=avila_live_r8LcZho0gc0tlHjalkPC72naLB2YWEAn
+
+# Optional
+PULSE_WEBHOOK_URL=https://api.avila.inc/pulse
+NOTIFICATIONS_ENABLED=true
+```
+
+### GitHub Secrets (para CI/CD)
+
+Configure em `Settings > Secrets and variables > Actions`:
+
+| Secret              | Descrição                           |
+| ------------------- | ----------------------------------- |
+| `MONGODB_URI`       | Connection string do MongoDB Atlas  |
+| `JWT_SECRET`        | Secret para assinar tokens JWT      |
+| `AVILA_API_KEY`     | API key do ecossistema Avila        |
+| `GH_TOKEN`          | Token GitHub (packages + workflows) |
+| `PULSE_WEBHOOK_URL` | Webhook do Avila Pulse (opcional)   |
+
+---
+
+## 📡 API Reference
+
+### Autenticação
+```
+POST /api/auth/login
+POST /api/auth/register
+```
+
+### Clientes
+```
+GET    /api/clients
+GET    /api/clients/:id
+POST   /api/clients
+PUT    /api/clients/:id
+DELETE /api/clients/:id
+```
+
+### Agendamentos
+```
+GET    /api/appointments
+POST   /api/appointments
+PUT    /api/appointments/:id
+DELETE /api/appointments/:id
+```
+
+### Serviços & Produtos
+```
+GET    /api/services
+GET    /api/products
+```
+
+### Dashboard
+```
+GET    /api/dashboard/stats
+```
+
+**Auth:** Todos os endpoints (exceto `/api/auth/*`) requerem header:
+```
+Authorization: Bearer <token_jwt>
+```
+
+---
+
+## 🔌 Integração MCP
+
+O projeto usa **Model Context Protocol** para integração com ferramentas de IA (Claude, GitHub Copilot, etc).
+
+### Configuração
+
+```bash
+# Instalar servidores MCP
+npm install -g @modelcontextprotocol/server-github
+npm install -g @modelcontextprotocol/server-mongodb
+npm install -g @modelcontextprotocol/server-filesystem
+```
+
+### Uso (Claude Desktop)
+
+Adicione ao `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "gabriela": {
+      "command": "node",
+      "args": ["<path>/backend/server.js"],
+      "env": {
+        "PORT": "3001",
+        "NODE_ENV": "development"
+      }
+    }
+  }
+}
+```
+
+**Veja `mcp.json` e `.mcp/config.json` para configuração completa.**
+
+---
+
+## 🚀 Deploy
+
+### Frontend (GitHub Pages)
+
+Deploy automático ao fazer push na `main`. Configurado em `.github/workflows/deploy-pages.yml`.
+
+### Backend (Azure Container Apps)
+
+```bash
+# Build e push da imagem
+docker build -t ghcr.io/avilaops/gabriela-backend:latest ./backend
+docker push ghcr.io/avilaops/gabriela-backend:latest
+```
+
+Deploy automático via `.github/workflows/deploy-backend.yml` após push de imagem.
+
+---
+
+## 📊 Roadmap
+
+### ✅ Concluído
+- [x] Autenticação JWT
+- [x] Dashboard com estatísticas
+- [x] CRUD de usuários
+- [x] CRUD de clientes
+- [x] CRUD de serviços e produtos
+- [x] Agendamentos
+- [x] CI/CD completo (5 workflows)
+- [x] Integração MCP
+
+### 🚧 Em Desenvolvimento
+- [ ] Agenda visual (calendário)
+- [ ] Módulo financeiro completo
+- [ ] Marketing via WhatsApp
+- [ ] Anamnese digital
+- [ ] Relatórios PDF
+- [ ] Multi-tenancy
+
+---
+
+## 🔐 Segurança
+
+- Senhas hasheadas (bcrypt, 10 rounds)
+- JWT com expiração configurável
+- Validação de input (express-validator)
+- CORS configurado
+- HTTPS obrigatório em produção
+- Secrets gerenciados via GitHub/Azure Key Vault
+
+---
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma feature branch (`git checkout -b feature/MinhaFeature`)
+3. Commit (`git commit -m 'feat: adiciona MinhaFeature'`)
+4. Push (`git push origin feature/MinhaFeature`)
+5. Abra um Pull Request
+
+**Padrão de commits:** [Conventional Commits](https://www.conventionalcommits.org/)
+
+---
+
+## 📝 Licença
+
+MIT License - veja [LICENSE](LICENSE)
+
+---
+
+## 📞 Contato & Links
+
+**Ávila.inc**
+- 🌐 Website: [avila.inc](https://avila.inc)
+- 📧 Email: contato@avila.inc
+- 🔗 Portal: [portal.avila.inc](https://portal.avila.inc)
+- 🔑 Vault: [vault.avila.inc](https://vault.avila.inc)
+
+---
+
+<div align="center">
+
+Feito com 💜 por **Ávila.inc**
+
+© 2025 - Todos os direitos reservados
+
+[Documentação](https://gabriela.avila.inc) • [API](https://api.avila.inc) • [Suporte](mailto:contato@avila.inc)
+
+</div>

@@ -40,6 +40,22 @@ jobs:
                   docker push ${IMAGE_TAG}:${{ github.sha }}
                   docker push ${IMAGE_TAG}:latest
 
+            - name: 📢 Notificar Pulse (se configurado)
+              if: ${{ secrets.PULSE_WEBHOOK_URL != '' }}
+              run: |
+                  curl -X POST "${{ secrets.PULSE_WEBHOOK_URL }}/notifications" \
+                       -H "Content-Type: application/json" \
+                       -H "Authorization: Bearer ${{ secrets.AVILA_API_KEY }}" \
+                       -d '{
+                         "project": "gabriela",
+                         "event": "deploy",
+                         "status": "success",
+                         "message": "Backend deployado com sucesso!",
+                         "image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}",
+                         "commit": "${{ github.sha }}",
+                         "author": "${{ github.actor }}"
+                       }' || echo "⚠️ Falha ao notificar Pulse (não crítico)"
+
             - name: ✅ Deploy concluído
               run: |
                   echo "🎉 Backend do Gabriela publicado com sucesso!"
