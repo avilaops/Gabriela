@@ -1,0 +1,103 @@
+# 🔧 Script de Correção - Permissões GHCR
+
+## Problema Identificado
+
+O workflow está **100% correto**, mas a **organização avilaops** está bloqueando o push.
+
+## Solução: Configurar na Organização
+
+### 1. Acesse as Configurações da Org
+
+```
+https://github.com/organizations/avilaops/settings/actions
+```
+
+### 2. Na seção "Workflow permissions"
+
+Marque:
+- ✅ **Read and write permissions**  
+  (Permite que GITHUB_TOKEN tenha `packages: write`)
+
+### 3. Na seção "Fork pull request workflows"
+
+Marque:
+- ✅ **Allow GitHub Actions to create and approve pull requests**
+
+### 4. GHCR Package Visibility (Importante!)
+
+Acesse:
+```
+https://github.com/orgs/avilaops/packages
+```
+
+Se o pacote `gabriela/backend` já existir:
+1. Clique no pacote
+2. **Package settings** → **Manage Actions access**
+3. Adicione o repositório `avilaops/gabriela` com permissão **Write**
+
+### 5. Se o problema persistir
+
+Execute este comando no terminal (com GitHub CLI instalado):
+
+```bash
+# Login
+gh auth login
+
+# Dar permissão explícita
+gh api \
+  --method PUT \
+  -H "Accept: application/vnd.github+json" \
+  /orgs/avilaops/packages/container/gabriela%2Fbackend/permissions/repositories/gabriela \
+  -f permission='write'
+```
+
+## Alternativa: Usar PAT ao invés de GITHUB_TOKEN
+
+Se preferir, crie um **Personal Access Token (Fine-grained)**:
+
+### 1. Criar o Token
+
+```
+https://github.com/settings/tokens?type=beta
+```
+
+Configurações:
+- **Resource owner**: avilaops
+- **Repository access**: Only select repositories → gabriela
+- **Permissions**:
+  - Repository permissions:
+    - Contents: Read
+  - Organization permissions:
+    - Packages: Read and write
+
+### 2. Adicionar como Secret
+
+```bash
+gh secret set GHCR_PAT -b"ghp_SEU_TOKEN_AQUI" -R avilaops/gabriela
+```
+
+### 3. Atualizar Workflow
+
+Trocar esta linha:
+```yaml
+password: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Por:
+```yaml
+password: ${{ secrets.GHCR_PAT }}
+```
+
+---
+
+## ✅ Checklist Rápido
+
+- [ ] Acessar `github.com/organizations/avilaops/settings/actions`
+- [ ] Marcar "Read and write permissions"
+- [ ] Salvar
+- [ ] Re-run do workflow falho no GitHub Actions
+- [ ] Se falhar, seguir passos do PAT
+
+---
+
+**Nota:** O workflow está correto. É 100% configuração de organização.
