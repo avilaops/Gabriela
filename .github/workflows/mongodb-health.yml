@@ -1,81 +1,81 @@
 name: MongoDB Health Check
 
 on:
-  schedule:
-    # Roda todos os dias às 9h UTC (6h Brasília)
-    - cron: '0 9 * * *'
-  workflow_dispatch:
+    schedule:
+        # Roda todos os dias às 9h UTC (6h Brasília)
+        - cron: "0 9 * * *"
+    workflow_dispatch:
 
 jobs:
-  health-check:
-    runs-on: ubuntu-latest
+    health-check:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: 📦 Checkout código
-        uses: actions/checkout@v4
+        steps:
+            - name: 📦 Checkout código
+              uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
+            - name: 🟢 Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20.x
 
-      - name: 📥 Instalar dependências
-        working-directory: ./backend
-        run: npm ci
+            - name: 📥 Instalar dependências
+              working-directory: ./backend
+              run: npm ci
 
-      - name: 🏥 Verificar conexão MongoDB
-        working-directory: ./backend
-        run: |
-          node -e "
-          const mongoose = require('mongoose');
+            - name: 🏥 Verificar conexão MongoDB
+              working-directory: ./backend
+              run: |
+                  node -e "
+                  const mongoose = require('mongoose');
 
-          mongoose.connect('${{ secrets.MONGODB_URI }}', {
-            serverSelectionTimeoutMS: 5000
-          })
-          .then(() => {
-            console.log('✅ MongoDB Atlas conectado com sucesso');
-            console.log('📊 Database:', mongoose.connection.name);
-            process.exit(0);
-          })
-          .catch(err => {
-            console.error('❌ Erro ao conectar MongoDB:', err.message);
-            process.exit(1);
-          });
-          "
+                  mongoose.connect('${{ secrets.MONGODB_URI }}', {
+                    serverSelectionTimeoutMS: 5000
+                  })
+                  .then(() => {
+                    console.log('✅ MongoDB Atlas conectado com sucesso');
+                    console.log('📊 Database:', mongoose.connection.name);
+                    process.exit(0);
+                  })
+                  .catch(err => {
+                    console.error('❌ Erro ao conectar MongoDB:', err.message);
+                    process.exit(1);
+                  });
+                  "
 
-      - name: 📊 Estatísticas do banco
-        if: success()
-        working-directory: ./backend
-        run: |
-          node -e "
-          const mongoose = require('mongoose');
+            - name: 📊 Estatísticas do banco
+              if: success()
+              working-directory: ./backend
+              run: |
+                  node -e "
+                  const mongoose = require('mongoose');
 
-          mongoose.connect('${{ secrets.MONGODB_URI }}')
-          .then(async () => {
-            const collections = await mongoose.connection.db.listCollections().toArray();
-            console.log('📋 Collections disponíveis:');
-            for (const col of collections) {
-              const count = await mongoose.connection.db.collection(col.name).countDocuments();
-              console.log(\`   • \${col.name}: \${count} documentos\`);
-            }
-            process.exit(0);
-          })
-          .catch(err => {
-            console.error('❌ Erro:', err.message);
-            process.exit(1);
-          });
-          "
+                  mongoose.connect('${{ secrets.MONGODB_URI }}')
+                  .then(async () => {
+                    const collections = await mongoose.connection.db.listCollections().toArray();
+                    console.log('📋 Collections disponíveis:');
+                    for (const col of collections) {
+                      const count = await mongoose.connection.db.collection(col.name).countDocuments();
+                      console.log(\`   • \${col.name}: \${count} documentos\`);
+                    }
+                    process.exit(0);
+                  })
+                  .catch(err => {
+                    console.error('❌ Erro:', err.message);
+                    process.exit(1);
+                  });
+                  "
 
-      - name: 🔔 Notificar erro no Pulse
-        if: failure()
-        run: |
-          curl -X POST ${{ secrets.PULSE_WEBHOOK_URL }}/notifications \
-               -H "Content-Type: application/json" \
-               -H "Authorization: Bearer ${{ secrets.AVILA_API_KEY }}" \
-               -d '{
-                 "type": "system_alert",
-                 "severity": "high",
-                 "title": "MongoDB Health Check Failed",
-                 "message": "A verificação de saúde do MongoDB falhou para gabriela",
-                 "source": "github-actions"
-               }'
+            - name: 🔔 Notificar erro no Pulse
+              if: failure()
+              run: |
+                  curl -X POST ${{ secrets.PULSE_WEBHOOK_URL }}/notifications \
+                       -H "Content-Type: application/json" \
+                       -H "Authorization: Bearer ${{ secrets.AVILA_API_KEY }}" \
+                       -d '{
+                         "type": "system_alert",
+                         "severity": "high",
+                         "title": "MongoDB Health Check Failed",
+                         "message": "A verificação de saúde do MongoDB falhou para gabriela",
+                         "source": "github-actions"
+                       }'

@@ -1,0 +1,108 @@
+name: Feature Request
+description: Sugerir uma nova funcionalidade
+title: "[FEATURE] "
+labels: ["enhancement", "needs-discussion"]
+assignees:
+  - avilaops/product
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        💡 Obrigado por sugerir uma melhoria! Descreva sua ideia abaixo.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema ou Necessidade
+      description: Qual problema essa feature resolve?
+      placeholder: Atualmente é difícil fazer X porque...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solução Proposta
+      description: Como você imagina que isso funcionaria?
+      placeholder: Seria útil ter uma funcionalidade que...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Área
+      description: Qual parte do sistema seria afetada?
+      options:
+        - Dashboard
+        - Agendamentos
+        - Clientes (CRM)
+        - Financeiro
+        - Marketing
+        - Documentos
+        - Autenticação
+        - API
+        - Mobile
+        - Outro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridade Sugerida
+      options:
+        - "🔴 Alta - Essencial para o negócio"
+        - "🟡 Média - Importante mas não urgente"
+        - "🟢 Baixa - Nice to have"
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas Consideradas
+      description: Você pensou em outras soluções?
+      placeholder: Também considerei fazer Y, mas...
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups/Exemplos
+      description: Adicione mockups, wireframes ou exemplos de outras aplicações
+
+  - type: dropdown
+    id: willingness
+    attributes:
+      label: Contribuição
+      description: Você gostaria de implementar essa feature?
+      options:
+        - "✅ Sim, posso fazer um PR"
+        - "🤔 Talvez com orientação"
+        - "❌ Apenas sugerindo"
+
+  - type: textarea
+    id: business
+    attributes:
+      label: Impacto no Negócio
+      description: Como isso ajudaria profissionais de design de sobrancelhas?
+      placeholder: Com essa funcionalidade, profissionais poderiam...
+
+  - type: textarea
+    id: technical
+    attributes:
+      label: Considerações Técnicas
+      description: Alguma preocupação técnica? (performance, segurança, etc)
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Verifiquei que essa feature não foi sugerida antes
+          required: true
+        - label: Esta feature está alinhada com o propósito do gabriela
+          required: true
+        - label: Li o guia de contribuição
+          required: true

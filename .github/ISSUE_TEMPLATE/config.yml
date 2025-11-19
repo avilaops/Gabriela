@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussões
+    url: https://github.com/avilaops/gabriela/discussions
+    about: Perguntas gerais, ideias e feedback
+
+  - name: 📚 Documentação
+    url: https://gabriela.avila.inc
+    about: Consulte a documentação oficial
+
+  - name: 🔒 Vulnerabilidade de Segurança
+    url: mailto:security@avila.inc
+    about: Reporte vulnerabilidades de segurança de forma privada
+
+  - name: 🆘 Suporte
+    url: mailto:support@avila.inc
+    about: Suporte técnico e dúvidas sobre uso

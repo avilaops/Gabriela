@@ -1,0 +1,140 @@
+name: Bug Report
+description: Reportar um bug ou problema
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees:
+  - avilaops/devs
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reportar um bug! Por favor, preencha o máximo de informações possível.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do Bug
+      description: Descrição clara e concisa do problema
+      placeholder: O que aconteceu?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para Reproduzir
+      description: Como reproduzir o problema
+      placeholder: |
+        1. Vá para '...'
+        2. Clique em '...'
+        3. Veja o erro
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento Esperado
+      description: O que deveria acontecer
+      placeholder: Deveria...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportamento Atual
+      description: O que acontece atualmente
+      placeholder: Na verdade...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severidade
+      description: Qual o impacto do bug?
+      options:
+        - "🔴 Crítico - Sistema não funciona"
+        - "🟠 Alto - Funcionalidade principal afetada"
+        - "🟡 Médio - Funcionalidade secundária afetada"
+        - "🟢 Baixo - Problema cosmético"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Componente
+      description: Qual parte do sistema?
+      options:
+        - Frontend
+        - Backend - API
+        - Backend - Database
+        - CI/CD
+        - Documentação
+        - Outro
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versão
+      description: Qual versão você está usando?
+      placeholder: "1.0.0"
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Navegador
+      description: Qual navegador (se aplicável)?
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Outro
+        - N/A
+
+  - type: input
+    id: os
+    attributes:
+      label: Sistema Operacional
+      description: Qual seu SO?
+      placeholder: "Windows 11, macOS 14, Ubuntu 22.04"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/Erros
+      description: Cole logs ou mensagens de erro relevantes
+      render: shell
+      placeholder: |
+        Error: ...
+        Stack trace: ...
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Adicione screenshots se possível (arraste e solte)
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Contexto Adicional
+      description: Qualquer outra informação relevante
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Verifiquei que não há issue duplicada
+          required: true
+        - label: Tentei reproduzir em ambiente limpo
+          required: false
+        - label: Li o código de conduta
+          required: true
