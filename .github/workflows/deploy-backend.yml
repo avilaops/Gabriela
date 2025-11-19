@@ -1,47 +1,69 @@
 name: Deploy Backend
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'backend/**'
-      - '.github/workflows/deploy-backend.yml'
-  workflow_dispatch:
+    push:
+        branches:
+            - main
+        paths:
+            - "backend/**"
+            - ".github/workflows/deploy-backend.yml"
+    workflow_dispatch:
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/backend
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}/backend
 
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
+    build-and-push:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
 
-    steps:
-      - name: 📦 Checkout código
-        uses: actions/checkout@v4
+        steps:
+            - name: 📦 Checkout código
+              uses: actions/checkout@v4
 
-      - name: 🐳 Login no GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+            - name: 🐳 Login no GitHub Container Registry
+              uses: docker/login-action@v3
+              with:
+                  registry: ${{ env.REGISTRY }}
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.GH_TOKEN }}
 
-      - name: 🏗️ Build e Push da imagem Docker
-        working-directory: ./backend
-        run: |
-          IMAGE_TAG=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          docker build -t ${IMAGE_TAG}:${{ github.sha }} \
-                       -t ${IMAGE_TAG}:latest .
-          docker push ${IMAGE_TAG}:${{ github.sha }}
-          docker push ${IMAGE_TAG}:latest
+            - name: 🏗️ Build e Push da imagem Docker
+              working-directory: ./backend
+              run: |
+                  IMAGE_TAG=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+                  docker build -t ${IMAGE_TAG}:${{ github.sha }} \
+                               -t ${IMAGE_TAG}:latest .
+                  docker push ${IMAGE_TAG}:${{ github.sha }}
+                  docker push ${IMAGE_TAG}:latest
 
-      - name: ✅ Deploy concluído
-        run: |
-          echo "🎉 Backend do Gabriela publicado com sucesso!"
-          echo "🐳 Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
-          echo "🐳 Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
+            - name: 📢 Notificar Pulse (se configurado)
+              if: ${{ secrets.PULSE_WEBHOOK_URL != '' }}
+              run: |
+                  curl -X POST "${{ secrets.PULSE_WEBHOOK_URL }}/notifications" \
+                       -H "Content-Type: application/json" \
+                       -H "Authorization: Bearer ${{ secrets.AVILA_API_KEY }}" \
+                       -d '{
+                         "project": "gabriela",
+                         "event": "deploy",
+                         "status": "success",
+                         "message": "Backend deployado com sucesso!",
+                         "image": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}",
+                         "commit": "${{ github.sha }}",
+                         "author": "${{ github.actor }}"
+                       }' || echo "⚠️ Falha ao notificar Pulse (não crítico)"
+
+            - name: ✅ Deploy concluído
+              run: |
+                  echo "🎉 Backend do Gabriela publicado com sucesso!"
+                  echo "🐳 Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+                  echo "🐳 Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
+                  echo ""
+                  echo "⚙️ Variáveis de ambiente necessárias no container:"
+                  echo "   - MONGODB_URI"
+                  echo "   - JWT_SECRET"
+                  echo "   - AVILA_API_KEY"
+                  echo "   - NODE_ENV=production"

@@ -15,7 +15,7 @@ async function loadUsers() {
 
 function renderUsersTable(users) {
     const tbody = document.getElementById('usersTableBody');
-    
+
     if (!users || users.length === 0) {
         tbody.innerHTML = `
             <tr>
@@ -29,7 +29,7 @@ function renderUsersTable(users) {
         `;
         return;
     }
-    
+
     tbody.innerHTML = users.map(user => `
         <tr>
             <td>
@@ -87,10 +87,10 @@ function openUserModal(userId = null) {
     const modal = document.getElementById('userModal');
     const form = document.getElementById('userForm');
     const modalTitle = document.getElementById('modalTitle');
-    
+
     form.reset();
     document.getElementById('formError').style.display = 'none';
-    
+
     if (userId) {
         modalTitle.textContent = 'Editar Usuário';
         loadUserData(userId);
@@ -100,7 +100,7 @@ function openUserModal(userId = null) {
         currentUserId = null;
         document.getElementById('userPassword').required = true;
     }
-    
+
     modal.style.display = 'flex';
 }
 
@@ -115,17 +115,17 @@ function closeUserModal() {
 async function loadUserData(userId) {
     try {
         const user = await api.request(`/auth/users/${userId}`);
-        
+
         document.getElementById('userId').value = user._id;
         document.getElementById('userNameInput').value = user.name;
         document.getElementById('userEmail').value = user.email;
         document.getElementById('userRole').value = user.role;
         document.getElementById('userPhone').value = user.phone || '';
-        
+
         // Senha não é obrigatória na edição
         document.getElementById('userPassword').required = false;
         document.getElementById('userPassword').placeholder = 'Deixe em branco para manter';
-        
+
     } catch (error) {
         console.error('Erro ao carregar usuário:', error);
         showError('Erro ao carregar dados do usuário');
@@ -141,26 +141,26 @@ function editUser(userId) {
 // Salvar usuário (criar ou atualizar)
 document.getElementById('userForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const formData = {
         name: document.getElementById('userNameInput').value,
         email: document.getElementById('userEmail').value,
         role: document.getElementById('userRole').value,
         phone: document.getElementById('userPhone').value
     };
-    
+
     const password = document.getElementById('userPassword').value;
     if (password) {
         formData.password = password;
     }
-    
+
     const submitButton = e.target.querySelector('button[type="submit"]');
     const formError = document.getElementById('formError');
-    
+
     submitButton.disabled = true;
     submitButton.innerHTML = '<i class="iconoir-loading"></i> Salvando...';
     formError.style.display = 'none';
-    
+
     try {
         if (currentUserId) {
             // Atualizar
@@ -177,15 +177,15 @@ document.getElementById('userForm').addEventListener('submit', async (e) => {
             });
             showSuccess('Usuário criado com sucesso!');
         }
-        
+
         closeUserModal();
         loadUsers();
-        
+
     } catch (error) {
         console.error('Erro ao salvar usuário:', error);
         formError.textContent = error.message || 'Erro ao salvar usuário';
         formError.style.display = 'block';
-        
+
     } finally {
         submitButton.disabled = false;
         submitButton.innerHTML = '<i class="iconoir-check"></i> Salvar Usuário';
@@ -197,15 +197,15 @@ async function deleteUser(userId, userName) {
     if (!confirm(`Tem certeza que deseja excluir o usuário "${userName}"?\n\nEsta ação não pode ser desfeita.`)) {
         return;
     }
-    
+
     try {
         await api.request(`/auth/users/${userId}`, {
             method: 'DELETE'
         });
-        
+
         showSuccess('Usuário excluído com sucesso!');
         loadUsers();
-        
+
     } catch (error) {
         console.error('Erro ao excluir usuário:', error);
         showError('Erro ao excluir usuário');
@@ -234,7 +234,7 @@ function showError(message) {
 }
 
 // Fechar modal ao clicar fora
-window.onclick = function(event) {
+window.onclick = function (event) {
     const modal = document.getElementById('userModal');
     if (event.target === modal) {
         closeUserModal();
