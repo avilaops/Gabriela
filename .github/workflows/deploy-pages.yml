@@ -43,5 +43,5 @@ jobs:
 
       - name: ✅ Deploy concluído
         run: |
-          echo "🎉 Frontend do Gabriela publicado com sucesso!"
+          echo "🎉 Frontend do gabriela publicado com sucesso!"
           echo "📍 URL: https://gabriela.avila.inc"

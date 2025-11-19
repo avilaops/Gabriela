@@ -76,6 +76,6 @@ jobs:
                  "type": "system_alert",
                  "severity": "high",
                  "title": "MongoDB Health Check Failed",
-                 "message": "A verificação de saúde do MongoDB falhou para Gabriela",
+                 "message": "A verificação de saúde do MongoDB falhou para gabriela",
                  "source": "github-actions"
                }'

@@ -58,7 +58,7 @@ jobs:
 
             - name: ✅ Deploy concluído
               run: |
-                  echo "🎉 Backend do Gabriela publicado com sucesso!"
+                  echo "🎉 Backend do gabriela publicado com sucesso!"
                   echo "🐳 Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
                   echo "🐳 Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
                   echo ""

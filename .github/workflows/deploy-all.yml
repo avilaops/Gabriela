@@ -81,7 +81,7 @@ jobs:
       - name: 🎉 Success
         run: |
           echo "════════════════════════════════════════════"
-          echo "🎉 GABRIELA - DEPLOY COMPLETO"
+          echo "🎉 gabriela - DEPLOY COMPLETO"
           echo "════════════════════════════════════════════"
           echo ""
           echo "🐳 Backend:  ghcr.io/${{ github.repository }}/backend:${{ github.sha }}"
