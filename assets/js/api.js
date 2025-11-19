@@ -69,6 +69,28 @@ class API {
         });
     }
 
+    // Users Management
+    async getUsers() {
+        return this.request('/auth/users');
+    }
+
+    async getUser(id) {
+        return this.request(`/auth/users/${id}`);
+    }
+
+    async updateUser(id, userData) {
+        return this.request(`/auth/users/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(userData),
+        });
+    }
+
+    async deleteUser(id) {
+        return this.request(`/auth/users/${id}`, {
+            method: 'DELETE',
+        });
+    }
+
     // Dashboard
     async getDashboardStats() {
         return this.request('/dashboard/stats');

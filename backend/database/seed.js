@@ -20,11 +20,11 @@ const seedDatabase = async () => {
         }
 
         // Criar usuário admin
-        const hashedPassword = await bcrypt.hash('gabriela2025', 10);
+        const hashedPassword = await bcrypt.hash('gabi@123', 10);
         const adminUser = await User.create({
-            email: 'admin@gabriela.com',
+            email: 'gabi',
             password: hashedPassword,
-            name: 'Gabriela Administrador',
+            name: 'Gabriela',
             role: 'admin'
         });
         console.log('👤 Usuário admin criado');
@@ -125,8 +125,8 @@ const seedDatabase = async () => {
         console.log(`   💅 Serviços: ${await Service.countDocuments()}`);
         console.log(`   📦 Produtos: ${await Product.countDocuments()}`);
         console.log('\n🔐 Login de teste:');
-        console.log('   Email: admin@gabriela.com');
-        console.log('   Senha: gabriela2025');
+        console.log('   Email/Login: gabi');
+        console.log('   Senha: gabi@123');
 
         process.exit(0);
 

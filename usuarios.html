@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários - Gabriela Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>💎 Gabriela</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="iconoir-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="agenda.html" class="nav-item">
+                    <i class="iconoir-calendar"></i>
+                    <span>Agenda</span>
+                </a>
+                <a href="clientes.html" class="nav-item">
+                    <i class="iconoir-community"></i>
+                    <span>Clientes</span>
+                </a>
+                <a href="financeiro.html" class="nav-item">
+                    <i class="iconoir-credit-card"></i>
+                    <span>Financeiro</span>
+                </a>
+                <a href="marketing.html" class="nav-item">
+                    <i class="iconoir-send-diagonal"></i>
+                    <span>Marketing</span>
+                </a>
+                <a href="documentos.html" class="nav-item">
+                    <i class="iconoir-page"></i>
+                    <span>Documentos</span>
+                </a>
+                <a href="usuarios.html" class="nav-item active">
+                    <i class="iconoir-settings"></i>
+                    <span>Usuários</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">G</div>
+                    <div class="user-details">
+                        <p class="user-name" id="userName">Gabriela</p>
+                        <p class="user-role">Administrador</p>
+                    </div>
+                </div>
+                <button onclick="logout()" class="btn-logout">
+                    <i class="iconoir-log-out"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h2>Gerenciamento de Usuários</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="openUserModal()">
+                        <i class="iconoir-plus"></i>
+                        Novo Usuário
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <!-- Users Table -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Usuários do Sistema</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="data-table" id="usersTable">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Função</th>
+                                    <th>Status</th>
+                                    <th>Criado em</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        <div class="loading">
+                                            <div class="spinner"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Novo/Editar Usuário -->
+    <div id="userModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Novo Usuário</h3>
+                <button class="modal-close" onclick="closeUserModal()">
+                    <i class="iconoir-xmark"></i>
+                </button>
+            </div>
+            <form id="userForm" class="modal-body">
+                <input type="hidden" id="userId">
+
+                <div class="form-group">
+                    <label for="userName">Nome Completo *</label>
+                    <input type="text" id="userNameInput" name="name" required placeholder="Ex: Gabriela Silva">
+                </div>
+
+                <div class="form-group">
+                    <label for="userEmail">Email *</label>
+                    <input type="email" id="userEmail" name="email" required placeholder="usuario@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="userPassword">Senha *</label>
+                    <input type="password" id="userPassword" name="password" required placeholder="••••••••"
+                        minlength="6">
+                    <small>Mínimo 6 caracteres</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="userRole">Função *</label>
+                    <select id="userRole" name="role" required>
+                        <option value="">Selecione...</option>
+                        <option value="admin">Administrador</option>
+                        <option value="professional">Profissional</option>
+                        <option value="viewer">Visualizador</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="userPhone">Telefone</label>
+                    <input type="tel" id="userPhone" name="phone" placeholder="(18) 99999-9999">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeUserModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="iconoir-check"></i>
+                        Salvar Usuário
+                    </button>
+                </div>
+
+                <div id="formError" class="error-message" style="display: none; margin-top: 20px;"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/usuarios.js"></script>
+</body>
+
+</html>
